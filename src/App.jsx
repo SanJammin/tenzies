@@ -21,7 +21,7 @@ function App() {
     setDice(generateAllNewDice());
   }
 
-  const diceElements = dice.map(num => <Die value={num.value} isHeld={num.isHeld} />);
+  const diceElements = dice.map(dieObj => <Die value={dieObj.value} isHeld={dieObj.isHeld} />);
 
   return (
     <>
