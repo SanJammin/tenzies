@@ -7,6 +7,9 @@ function App() {
 
   const [dice, setDice] = useState(generateAllNewDice());
 
+  const gameWon = dice.every(die => die.isHeld) &&
+    dice.every(die => die.value === dice[0].value);
+
   function generateAllNewDice() {
     return new Array(10)
       .fill(null)
@@ -50,7 +53,7 @@ function App() {
         <div className="dice-holder">
           {diceElements}
         </div>
-        <button className="roll" onClick={handleClick}>Roll</button>
+        <button className="roll" onClick={handleClick}>{gameWon ? "New Game" : "Roll"}</button>
       </main>
     </>
   );
