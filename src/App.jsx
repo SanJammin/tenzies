@@ -20,10 +20,25 @@ function App() {
   }
 
   function handleClick() {
-    setDice(generateAllNewDice());
+    setDice(prevDice => prevDice.map(die => {
+      return die.isHeld ? die : {...die, value: Math.ceil(Math.random() * 6)}
+    }));
   }
 
-  const diceElements = dice.map(dieObj => <Die key={dieObj.id} value={dieObj.value} isHeld={dieObj.isHeld} />);
+  function holdDie(id) {
+    setDice(prevDice => prevDice.map(die => {
+      return die.id === id ? {...die, isHeld: !die.isHeld} : die;
+    }));
+  }
+
+  const diceElements = dice.map(dieObj => (
+    <Die 
+      key={dieObj.id} 
+      value={dieObj.value} 
+      isHeld={dieObj.isHeld} 
+      onClick={() => holdDie(dieObj.id)}
+    />
+  ));
 
   return (
     <>

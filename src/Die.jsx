@@ -4,6 +4,12 @@ export default function Die(props) {
     }
 
     return (
-        <div className="die" style={styles}>{props.value}</div>
+        <div 
+            className="die" 
+            style={styles} 
+            onClick={props.onClick}
+        >
+            {props.value}
+        </div>
     );
 }
