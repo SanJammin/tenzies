@@ -8,15 +8,20 @@ function App() {
 
   function generateAllNewDice() {
     return new Array(10)
-      .fill(0)
-      .map(() => Math.ceil(Math.random() * 6));
+      .fill(null)
+      .map(() => {
+        return {
+          value: Math.ceil(Math.random() * 6),
+          isHeld: false
+        };
+      });
   }
 
   function handleClick() {
     setDice(generateAllNewDice());
   }
 
-  const diceElements = dice.map(dieValue => <Die value={dieValue} />);
+  const diceElements = dice.map(num => <Die value={num.value} isHeld={num.isHeld} />);
 
   return (
     <>
