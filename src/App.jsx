@@ -27,6 +27,7 @@ function App() {
     setDice(prevDice => prevDice.map(die => {
       return die.isHeld ? die : {...die, value: Math.ceil(Math.random() * 6)}
     }));
+    if (gameWon) setDice(generateAllNewDice());
   }
 
   function holdDie(id) {
